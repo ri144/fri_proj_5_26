@@ -1,0 +1,41 @@
+Inputs: customer number, name, sales amount, tax code
+Processing Steps: getData, checkTaxCode, computeTaxOwed, outputTaxOwed
+Outputs: tax owed
+
+BEGIN
+	SET flag to true
+	DOWHILE flag is true
+		PRINT ("What is the customer's number?")
+		SET customer number to user input
+		PRINT ("What is their name?")
+		SET name to user input
+		PRINT ("What was the sales amount?")
+		SET sales amount to user input
+		PRINT ("What is the corresponding tax code?")
+		SET tax code to user input
+		SET invalid to false
+		DOWHILE invalid is true
+			SET invalid to false
+			IF (tax code is NOT "NRM" or tax code is NOT "NPF" or tax code is NOT "BIZ") THEN
+				PRINT ("Invalid tax code, please try again")
+				SET tax code
+				SET invalid to true
+			ENDIF		
+		ENDDO
+		IF (tax == "NRM") THEN
+			SET total = sales amount * 1.06		
+		ELSE
+			IF(tax == "NPF") THEN
+				SET total = sales amount;
+			ELSE
+				SET total = sales amount * 1.045;
+			ENDIF
+		ENDIF
+		PRINT("Total amount due $" + total)
+		PRINT("Do you want to enter in another record? (Y/N)")
+		SET check to user input
+		IF (check == "N")
+			SET flag to false
+		ENDIF
+	ENDDO	 
+END
